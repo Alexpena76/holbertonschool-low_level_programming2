@@ -14,7 +14,7 @@ void times_table(void)
 		for (j = 0; j <= 9; j++)
 		{
 			product = i * j;
-			
+
 			if (j == 0)
 			{
 				_putchar(product + '0');
@@ -23,7 +23,7 @@ void times_table(void)
 			{
 				_putchar(',');
 				_putchar(' ');
-				
+
 				if (product < 10)
 				{
 					_putchar(' ');
