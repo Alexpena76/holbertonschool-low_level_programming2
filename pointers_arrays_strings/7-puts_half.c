@@ -26,8 +26,8 @@ void puts_half(char *str)
 	}
 	else
 	{
-		/* Odd: print last n characters where n = (length + 1) / 2 */
-		start = length - (length + 1) / 2;
+		/* Odd: start from (length + 1) / 2 */
+		start = (length + 1) / 2;
 	}
 
 	/* Print from starting position to end */
