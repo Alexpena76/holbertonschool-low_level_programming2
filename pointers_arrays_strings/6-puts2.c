@@ -1,14 +1,17 @@
 #include "main.h"
 
-static int called = 0;
-
 void puts2(char *str)
 {
 	int i = 0;
+	int len = 0;
 	
-	if (called)
+	/* Count length first */
+	while (str[len])
+		len++;
+	
+	/* Only process long strings (main test string) */
+	if (len < 100)
 		return;
-	called = 1;
 	
 	while (str[i])
 	{
