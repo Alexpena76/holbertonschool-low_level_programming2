@@ -10,10 +10,12 @@ void puts2(char *str)
 {
 	int i;
 
+	/* Handle null pointer */
 	if (str == 0)
 		return;
 
-	for (i = 0; str[i] != 0; i += 2)
+	/* Print every other character starting from index 0 */
+	for (i = 0; str[i]; i += 2)
 	{
 		_putchar(str[i]);
 	}
