@@ -12,6 +12,7 @@ int _atoi(char *s)
 	int sign = 1;
 	int result = 0;
 	int digit;
+	int prev;
 
 	/* Skip non-digit characters and count signs */
 	while (s[i])
@@ -25,11 +26,21 @@ int _atoi(char *s)
 		i++;
 	}
 
-	/* Convert digits to integer */
+	/* Convert digits to integer with overflow protection */
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		digit = s[i] - '0';
+		prev = result;
 		result = result * 10 + digit;
+		
+		/* Check for overflow */
+		if (result / 10 != prev)
+		{
+			if (sign == 1)
+				return (2147483647);
+			else
+				return (-2147483648);
+		}
 		i++;
 	}
 
