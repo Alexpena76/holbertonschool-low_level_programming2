@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-int _atoi(char *s);
+void swap_int(int *a, int *b);
 
 #endif
