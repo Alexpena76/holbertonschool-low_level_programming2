@@ -12,7 +12,6 @@ int _atoi(char *s)
 	int sign = 1;
 	int result = 0;
 	int digit;
-	int prev;
 
 	/* Skip non-digit characters and count signs */
 	while (s[i])
@@ -30,17 +29,24 @@ int _atoi(char *s)
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		digit = s[i] - '0';
-		prev = result;
-		result = result * 10 + digit;
 		
-		/* Check for overflow */
-		if (result / 10 != prev)
+		/* Check for overflow BEFORE calculation */
+		if (result > 214748364)
 		{
 			if (sign == 1)
 				return (2147483647);
 			else
 				return (-2147483648);
 		}
+		if (result == 214748364 && digit > 7)
+		{
+			if (sign == 1)
+				return (2147483647);
+			else
+				return (-2147483648);
+		}
+		
+		result = result * 10 + digit;
 		i++;
 	}
 
