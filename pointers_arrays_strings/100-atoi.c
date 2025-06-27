@@ -29,23 +29,13 @@ int _atoi(char *s)
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		digit = s[i] - '0';
-		
-		/* Check for overflow BEFORE calculation */
-		if (result > 214748364)
+
+		/* Check for overflow before calculation */
+		if (result > 214748364 || (result == 214748364 && digit > 7))
 		{
-			if (sign == 1)
-				return (2147483647);
-			else
-				return (-2147483648);
+			return ((sign == 1) ? 2147483647 : -2147483648);
 		}
-		if (result == 214748364 && digit > 7)
-		{
-			if (sign == 1)
-				return (2147483647);
-			else
-				return (-2147483648);
-		}
-		
+
 		result = result * 10 + digit;
 		i++;
 	}
