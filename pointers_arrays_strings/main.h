@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
-int _strcmp(char *s1, char *s2);
+void reverse_array(int *a, int n);
+void print_array(int *a, int n);
 
 #endif
