@@ -13,7 +13,7 @@ int _strlen_recursion(char *s)
 	{
 		return (0);
 	}
-	
+
 	/* Recursive case: 1 + length of remaining string */
 	return (1 + _strlen_recursion(s + 1));
 }
