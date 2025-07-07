@@ -1,6 +1,48 @@
 #include <stdlib.h>
-#include <string.h>
 #include "dog.h"
+
+/**
+ * _strlen - calculates length of a string
+ * @str: string to measure
+ *
+ * Return: length of string
+ */
+int _strlen(char *str)
+{
+	int len = 0;
+
+	if (str == NULL)
+		return (0);
+
+	while (str[len] != '\0')
+		len++;
+
+	return (len);
+}
+
+/**
+ * _strcpy - copies a string
+ * @dest: destination buffer
+ * @src: source string
+ *
+ * Return: pointer to dest
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int i = 0;
+
+	if (dest == NULL || src == NULL)
+		return (NULL);
+
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+
+	return (dest);
+}
 
 /**
  * new_dog - creates a new dog
@@ -18,22 +60,23 @@ dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *new_dog_ptr;
 	char *name_copy, *owner_copy;
+	int name_len, owner_len;
 
 	/* Input validation */
 	if (name == NULL || owner == NULL)
-	{
 		return (NULL);
-	}
+
+	/* Calculate string lengths manually */
+	name_len = _strlen(name);
+	owner_len = _strlen(owner);
 
 	/* Allocate memory for the dog structure */
 	new_dog_ptr = malloc(sizeof(dog_t));
 	if (new_dog_ptr == NULL)
-	{
 		return (NULL);
-	}
 
 	/* Allocate memory for name copy */
-	name_copy = malloc(strlen(name) + 1);
+	name_copy = malloc(name_len + 1);
 	if (name_copy == NULL)
 	{
 		free(new_dog_ptr);
@@ -41,7 +84,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	}
 
 	/* Allocate memory for owner copy */
-	owner_copy = malloc(strlen(owner) + 1);
+	owner_copy = malloc(owner_len + 1);
 	if (owner_copy == NULL)
 	{
 		free(name_copy);
@@ -50,8 +93,8 @@ dog_t *new_dog(char *name, float age, char *owner)
 	}
 
 	/* Copy strings to allocated memory */
-	strcpy(name_copy, name);
-	strcpy(owner_copy, owner);
+	_strcpy(name_copy, name);
+	_strcpy(owner_copy, owner);
 
 	/* Initialize the dog structure */
 	new_dog_ptr->name = name_copy;
