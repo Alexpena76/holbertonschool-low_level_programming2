@@ -13,46 +13,36 @@ void print_all(const char * const format, ...)
 {
 	va_list args;
 	int i = 0;
-	char *str;
-	char *separator = "";
+	char *str, *sep = "";
 
 	va_start(args, format);
-
-	/* First loop to iterate through format string */
 	while (format && format[i])
 	{
-		printf("%s", separator);
-
-		/* Check each format character */
-		if (format[i] == 'c')
+		if (format[i] == 'c' || format[i] == 'i' || format[i] == 'f' || format[i] == 's')
 		{
-			printf("%c", va_arg(args, int));
+			printf("%s", sep);
+			sep = ", ";
 		}
-		if (format[i] == 'i')
+		switch (format[i])
 		{
-			printf("%d", va_arg(args, int));
-		}
-		if (format[i] == 'f')
-		{
-			printf("%f", va_arg(args, double));
-		}
-		if (format[i] == 's')
-		{
-			str = va_arg(args, char *);
-			if (str == NULL)
-			{
-				printf("(nil)");
-			}
-			if (str != NULL)
-			{
+			case 'c':
+				printf("%c", va_arg(args, int));
+				break;
+			case 'i':
+				printf("%d", va_arg(args, int));
+				break;
+			case 'f':
+				printf("%f", va_arg(args, double));
+				break;
+			case 's':
+				str = va_arg(args, char *);
+				if (str == NULL)
+					str = "(nil)";
 				printf("%s", str);
-			}
+				break;
 		}
-
-		separator = ", ";
 		i++;
 	}
-
 	va_end(args);
 	printf("\n");
 }
