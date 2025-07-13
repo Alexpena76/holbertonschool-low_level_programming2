@@ -18,7 +18,8 @@ void print_all(const char * const format, ...)
 	va_start(args, format);
 	while (format && format[i])
 	{
-		if (format[i] == 'c' || format[i] == 'i' || format[i] == 'f' || format[i] == 's')
+		if (format[i] == 'c' || format[i] == 'i' ||
+			format[i] == 'f' || format[i] == 's')
 		{
 			printf("%s", sep);
 			sep = ", ";
